@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComputerRenting.View.Udlån"
+             Title="Udlån">
+    <Grid RowDefinitions="55,auto,35,120,auto,auto,auto,*" Padding="3" ColumnDefinitions="*" BackgroundColor="CornflowerBlue">
+        <Grid ColumnDefinitions="*,55">
+            <Frame Grid.Column="1" Margin="3" BorderColor="Black" CornerRadius="10">
+                <ImageButton HeightRequest="40" WidthRequest="40" Source="user.png" Clicked="Button_Clicked"></ImageButton>
+            </Frame>
+        </Grid>
+        <Label Grid.Row="1" FontSize="Large" FontAttributes="Bold">Computere du har lånt</Label>
+        <Frame Grid.Row="2" Grid.RowSpan="2" BackgroundColor="White" CornerRadius="10"></Frame>
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*,*">
+            <Label Grid.Column="0" FontAttributes="Bold">Computer:</Label>
+            <Label Grid.Column="1" FontAttributes="Bold">Model:</Label>
+            <StackLayout Grid.Column="2">
+                <Label Grid.Column="2" FontAttributes="Bold" LineBreakMode="CharacterWrap">Udløbs dato:</Label>
+            </StackLayout>
+            <StackLayout Grid.Column="3">
+                <Label Grid.Column="3" FontAttributes="Bold" LineBreakMode="NoWrap">Reservation:</Label>
+            </StackLayout>
+        </Grid>
+        <ScrollView Grid.Row="3">
+            <VerticalStackLayout>
+                <CollectionView x:Name="RentedComputersCollectionView" ItemsSource="{Binding RentedComputers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="40" ColumnDefinitions="*,*,*,*">
+                                <StackLayout Grid.Column="0">
+                                    <Label Grid.Column="0" Text="{Binding computer}"></Label>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <Label Grid.Column="1" LineBreakMode="WordWrap" Text="{Binding model}"></Label>
+                                </StackLayout>
+                                <StackLayout Grid.Column="2">
+                                    <Label Grid.Column="2" Text="{Binding udløbsdato}"></Label>
+                                </StackLayout>
+                                <Button Grid.Column="3" BackgroundColor="{Binding color}" Text="{Binding status}" TextColor="Black" Command="{Binding Path=BindingContext.CancelComputer,Source={Reference RentedComputersCollectionView}}" CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Label Grid.Row="4"></Label>
+        <Line Grid.Row="5" X1="10000" Y1="0" Stroke="Black"></Line>
+        <Label Grid.Row="5" Grid.Column="0" FontSize="Large" FontAttributes="Bold">Computere der kan lånes</Label>
+        <Frame Grid.Row="6" Grid.RowSpan="2" BackgroundColor="White" CornerRadius="10"></Frame>
+        <Grid Grid.Row="6" ColumnDefinitions="*,*,*,*">
+            <Label Grid.Column="0" FontAttributes="Bold">Computer:</Label>
+            <Label Grid.Column="1" FontAttributes="Bold">Model:</Label>
+            <Label Grid.Column="2" FontAttributes="Bold">Mus:</Label>
+            <Label Grid.Column="3" FontAttributes="Bold" >Reservation:</Label>
+        </Grid>
+        <ScrollView Grid.Row="7">
+            <VerticalStackLayout>
+                <CollectionView x:Name="FreeComputersCollectionView" SelectionMode="Single" ItemsSource="{Binding FreeComputers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <Label Grid.Column="0" Text="{Binding computer}"></Label>
+                                <Label Grid.Column="1" Text="{Binding model}"></Label>
+                                <Label Grid.Column="2" Text="{Binding mus}"></Label>
+                                <Button Grid.Column="3" BackgroundColor="Green" Padding="10" Text="Reservér" Command="{Binding Path=BindingContext.ReserveComputer,Source={Reference FreeComputersCollectionView}}" CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:Class="ComputerRenting.View.RentComputerPopUp"
+               Size="350,220">
+    <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*">
+        <Frame Grid.RowSpan="2" Grid.ColumnSpan="2" BackgroundColor="White" CornerRadius="0"></Frame>
+        <Label 
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Text="Du har valgt denne computer"
+            FontAttributes="Bold"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label x:Name="ComputerNavnLabel" Grid.Row="1" HorizontalOptions="Center" Text="Indsæt navn"/>
+        <Label 
+            Grid.Row="2" 
+            Text="Hvor længe  vil du låne den?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        <DatePicker x:Name="lendingDatePicker" Grid.ColumnSpan="2" HorizontalOptions="Center" Grid.Row="3"/>
+        <Button Grid.Row="4"
+                Margin="3"
+                BackgroundColor="White"
+                TextColor="Black"
+                Text="Fortryd"
+                Clicked="OnNoButtonClicked" />
+        <Button Grid.Row="4"
+                Margin="3"
+                BackgroundColor="White"
+                Grid.Column="1"
+                TextColor="Black"
+                Text="Bekræft"
+                Clicked="OnYesButtonClicked" />
+    </Grid>
+</toolkit:Popup>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComputerRenting.View.ProfilPage"
+             Title="ProfilPage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid RowDefinitions="300,auto,100,auto,100,auto,100" Padding="10">
+                <Image Margin="0,0,0,20" Source="user.png"></Image>
+                <Label Grid.Row="1" FontAttributes="Bold">Om</Label>
+                <Line Grid.Row="1" VerticalOptions="End" X1="100000" Y1="0" Stroke="Gray"></Line>
+                <Grid Grid.Row="2" RowDefinitions="*,*" ColumnDefinitions="*,11*" Padding="10,0,0,0">
+                    <Image Grid.Row="0" Source="user.png" Margin="2"></Image>
+                    <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Navn</Label>
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="NavnLabel" VerticalOptions="End" Padding="10,0,0,9"></Label>
+                    <Image Grid.Row="1" Source="home.png" Margin="2"></Image>
+                    <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Adresse</Label>
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="AdresseLabel" VerticalOptions="End" Padding="10,0,0,9">Odense vej 78,3, 5700 Svendborg</Label>
+                </Grid>
+                <Label Grid.Row="3" FontAttributes="Bold">Kontakt</Label>
+                <Line Grid.Row="3" VerticalOptions="End" X1="100000" Y1="0" Stroke="Gray"></Line>
+                <Grid Grid.Row="4" RowDefinitions="*,*" ColumnDefinitions="*,11*" Padding="10,0,0,0">
+                    <Image Grid.Row="0" Source="phone.png" Margin="2"></Image>
+                    <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Telefon</Label>
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="TelefonLabel" VerticalOptions="End" Padding="10,0,0,9">88888888</Label>
+                    <Image Grid.Row="1" Source="mail.png" Margin="2"></Image>
+                    <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Email</Label>
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="EmailLabel" VerticalOptions="End" Padding="10,0,0,9">davi3442@edu.sde.dk</Label>
+                </Grid>
+                <Label Grid.Row="5" FontAttributes="Bold">Elev Info</Label>
+                <Line Grid.Row="5" VerticalOptions="End" X1="100000" Y1="0" Stroke="Gray"></Line>
+                <Grid Grid.Row="6" RowDefinitions="*,*" ColumnDefinitions="*,11*" Padding="10,0,0,0">
+                    <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Elev Nummer</Label>
+                    <Label Grid.Row="0" Grid.Column="1" x:Name="ElevNummerLabel" VerticalOptions="End" Padding="10,0,0,9">asdf1234</Label>
+                    <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Padding="10,3,10,10">Klasse</Label>
+                    <Label Grid.Row="1" Grid.Column="1" x:Name="KlasseLabel" VerticalOptions="End" Padding="9">24M6HDP04-10.2</Label>
+                </Grid>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ComputerRenting.View.LoginPage">
+    <Grid RowDefinitions="40,auto,*" ColumnDefinitions="*,7*,*" BackgroundColor="CornflowerBlue">
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="2*,2*,2*,3*" Margin="20" RowSpacing="30">
+            <Label Grid.Row="0" Text="Login" FontSize="23" HorizontalTextAlignment="Center" TextColor="White"/>
+            <Entry Grid.Row="1" x:Name="EmailEntry" Text="1234@gmail.com" BackgroundColor="WhiteSmoke" HeightRequest="60" Placeholder="Skolemail"/>
+            <Entry Grid.Row="2" x:Name="PasswordEntry" Text="Kode1234" BackgroundColor="WhiteSmoke"  IsPassword="True" HeightRequest="60" Placeholder="Adgangskode"/>
+            <Button Grid.Row="3" Text="Log ind" Clicked="Button_Clicked" FontAttributes="Bold" TextColor="White" CornerRadius="10" BackgroundColor="LightGreen"/>
+        </Grid>
+    </Grid>
+</ContentPage>
