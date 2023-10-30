@@ -1,4 +1,3 @@
-using Acr.UserDialogs;
 using CommunityToolkit.Maui.Views;
 using ComputerRenting.Model;
 using Newtonsoft.Json;
@@ -85,8 +84,10 @@ public partial class Udlån : ContentPage
                 var freeComputer = new FreeComputer
                 {
                     id = com.id,
+                    register = com.register,
                     computer = com.computer,
-                    model = com.model,
+                    mus = com.mus,
+                    model = com.model
                 };
                 var httpResult = await HttpDeleteReserveComputer(com.rentId);
                 if (httpResult)
@@ -104,18 +105,23 @@ public partial class Udlån : ContentPage
         var popUpResult = await this.ShowPopupAsync(popup);
         if (popUpResult is DateTime date)
         {
+            string udlåningsdato = DateTime.Now.ToString("yyyy'-'MM'-'dd");
+            string udløbsdato = date.ToString("yyyy'-'MM'-'dd");
+            var httpResult = await HttpPostReserveComputer(com, udlåningsdato, udløbsdato);
             var rentedComputer = new RentedComputer
             {
                 id = com.id,
+                rentId = httpResult.id,
+                register = com.register,
                 computer = com.computer,
+                mus = com.mus,
+                udlåningsdato = udlåningsdato,
+                udløbsdato = udløbsdato,
                 model = com.model,
-                udlåningsdato = DateTime.Now.ToString("yyyy'-'MM'-'dd"),
-                udløbsdato = date.ToString("yyyy'-'MM'-'dd"),
                 status = "Reserveret"
             };
             rentedComputer.color = (rentedComputer.status == "Reserveret") ? Color.FromRgb(255, 255, 0) : Color.FromRgb(255, 0, 0);
-            var httpResult = await HttpPostReserveComputer(rentedComputer);
-            if (httpResult)
+            if (httpResult.success)
             {
                 FreeComputers.Remove(com);
                 RentedComputers.Add(rentedComputer);
@@ -138,22 +144,32 @@ public partial class Udlån : ContentPage
             return false;
         }
     }
-    private async Task<bool> HttpPostReserveComputer(RentedComputer computer)
+    private async Task<HttpPostMessage> HttpPostReserveComputer(FreeComputer computer, string udlåningsdato, string udløbsdato)
     {
         try
         {
-            string json = "{\"brugerID\": " + bruger.brugerID + ", \"computerID\": " + computer.id + ", \"udlånsdato\": \"" + computer.udlåningsdato + "\",\"udløbsdato\": \"" + computer.udløbsdato + "\"}";
+            string json = "{\"elevNummer\": \"" + bruger.elevNummer + "\", \"registreringsNummer\": \"" + computer.register + "\", \"udlånsdato\": \"" + udlåningsdato + "\",\"udløbsdato\": \"" + udløbsdato + "\"}";
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             using HttpResponseMessage response = await client.PostAsync("https://gorilla-informed-asp.ngrok-free.app/Udlån/RentComputer", content);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
+            HttpPostMessage message = JsonConvert.DeserializeObject<HttpPostMessage>(responseBody);
+            message.success = true;
             await DisplayAlert("Succes", "Computeren er nu reserveret", "OK");
-            return true;
+            return message;
         }
         catch (Exception ex)
         {
             await DisplayAlert("Alert", ex.Message, "OK");
-            return false;
+            HttpPostMessage message = new HttpPostMessage() { success = false };
+            return message;
         }
+    }
+
+    private class HttpPostMessage
+    {
+        public bool success { get; set; }
+        [JsonProperty("udlånID")]
+        public int id { get; set; }
     }
 }

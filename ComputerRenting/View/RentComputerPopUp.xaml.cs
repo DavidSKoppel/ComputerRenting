@@ -10,10 +10,10 @@ public partial class RentComputerPopUp : Popup
 		InitializeComponent();
         ComputerNavnLabel.Text = free.computer + " " + free.model;
     }
-    void OnYesButtonClicked(object? sender, EventArgs e) 
+    void OnYesButtonClicked(object sender, EventArgs e) 
 	{
 		var rent = lendingDatePicker.Date;
         Close(rent);
     }
-    void OnNoButtonClicked(object? sender, EventArgs e) => Close(false);
+    void OnNoButtonClicked(object sender, EventArgs e) => Close(false);
 }

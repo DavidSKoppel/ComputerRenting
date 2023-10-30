@@ -17,6 +17,8 @@ namespace ComputerRenting.Model
         public int rentId { get; set; }
         [JsonProperty("computerID")]
         public int id { get; set; }
+        [JsonProperty("registreringsNummer")]
+        public string register { get; set; }
         [JsonProperty("fabrikatNavn")]
         public string computer { get; set; }
         [JsonProperty("modelNavn")]
@@ -25,6 +27,8 @@ namespace ComputerRenting.Model
         public string udlåningsdato { get; set; }
         [JsonProperty("udløbsdato")]
         public string udløbsdato { get; set; }
+        [JsonProperty("musType")]
+        public string mus { get; set; }
         [JsonProperty("status")]
         public string status { get; set; }
         public Color color { get; set; }

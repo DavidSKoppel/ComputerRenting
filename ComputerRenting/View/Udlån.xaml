@@ -36,7 +36,7 @@
                                 <StackLayout Grid.Column="2">
                                     <Label Grid.Column="2" Text="{Binding udløbsdato}"></Label>
                                 </StackLayout>
-                                <Button Grid.Column="3" BackgroundColor="{Binding color}" Text="{Binding status}" TextColor="Black" Command="{Binding Path=BindingContext.CancelComputer,Source={Reference RentedComputersCollectionView}}" CommandParameter="{Binding .}"/>
+                                <Button Grid.Column="3" BackgroundColor="{Binding color}" Text="{Binding status}" TextColor="Black" Padding="0" Command="{Binding Path=BindingContext.CancelComputer,Source={Reference RentedComputersCollectionView}}" CommandParameter="{Binding .}"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:Class="ComputerRenting.View.LoginPage">
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="Black"/>
+    </ContentPage.Behaviors>
     <Grid RowDefinitions="40,auto,*" ColumnDefinitions="*,7*,*" BackgroundColor="CornflowerBlue">
         <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="2*,2*,2*,3*" Margin="20" RowSpacing="30">
             <Label Grid.Row="0" Text="Login" FontSize="23" HorizontalTextAlignment="Center" TextColor="White"/>
